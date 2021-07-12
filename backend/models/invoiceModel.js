@@ -15,7 +15,7 @@ export const getinvoices = (result) => {
  
 // Get Single invoice
 export const getinvoiceById = (id, result) => {
-    db.query("SELECT * FROM invoice WHERE invoice_id = ?", [id], (err, results) => {             
+    db.query("SELECT * FROM invoice WHERE id = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -39,7 +39,7 @@ export const insertinvoice = (data, result) => {
  
 // Update invoice to Database
 export const updateinvoiceById = (data, id, result) => {
-    db.query("UPDATE invoice SET invoice_price = ? WHERE invoice_id = ?", [data.invoice_price, id], (err, results) => {             
+    db.query("UPDATE invoice SET invoice_price = ?, invoice_date = ?, invoice_id = ? WHERE id = ?", [data.invoice_price, data.invoice_date,data.invoice_id, id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -51,7 +51,7 @@ export const updateinvoiceById = (data, id, result) => {
  
 // Delete invoice to Database
 export const deleteinvoiceById = (id, result) => {
-    db.query("DELETE FROM invoice WHERE invoice_id = ?", [id], (err, results) => {             
+    db.query("DELETE FROM invoice WHERE id = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
