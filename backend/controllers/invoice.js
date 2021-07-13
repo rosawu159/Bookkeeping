@@ -39,6 +39,7 @@ export const createinvoice = (req, res) => {
 export const updateinvoice = (req, res) => {
     const data  = req.body;
     const id    = req.params.id;
+    console.log(data);
     updateinvoiceById(data, id, (err, results) => {
         if (err){
             res.send(err);

@@ -39,7 +39,7 @@ export const insertinvoice = (data, result) => {
  
 // Update invoice to Database
 export const updateinvoiceById = (data, id, result) => {
-    db.query("UPDATE invoice SET invoice_price = ?, invoice_date = ?, invoice_id = ? WHERE id = ?", [data.invoice_price, data.invoice_date,data.invoice_id, id], (err, results) => {             
+    db.query("UPDATE invoice SET invoice_price = ?, invoice_date = ?, invoice_id = ?, invoice_tag = ? WHERE id = ?", [data.invoice_price, data.invoice_date, data.invoice_id, data.invoice_tag, id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
