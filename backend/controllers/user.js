@@ -17,7 +17,7 @@ export const signupinvoice = (req, res) => {
                     res.send(err);
                 } else {
                     const data = req.body;
-                    insertuser(data, (err, result) => {
+                    insertuser(req.body.username , hash, (err, result) => {
                         if (err){
                             res.send(err);
                         }else{
@@ -35,7 +35,7 @@ export const signupinvoice = (req, res) => {
 // Create New User
 export const logininvoice = (req, res) => {
     const data = req.body;
-    insertuser(data, (err, result) => {
+    getuser(req.body.username, (err, result) => {
         // user does not exists
         if (err){
             res.status(409).send({
@@ -46,6 +46,7 @@ export const logininvoice = (req, res) => {
                 msg: 'Username or password is incorrect!'
             });
         } else {
+
 
             // check password
             bcrypt.compare(
@@ -67,12 +68,21 @@ export const logininvoice = (req, res) => {
                                 expiresIn: '7d'
                             }
                             );
-                            updateusertime(req.params.username);
-                            res.status(200).send({
-                                msg: 'Logged in!',
-                                token,
-                                user: result[0]
+                            //updateusertime(req.params.username);
+                            updateusertime(req.body.username, (err, updateresult) => {
+                                if (err){
+                                    res.send(err);
+                                }else{
+                                    res.status(200).send({
+                                        msg: 'Logged in!',
+                                        token,
+                                        user: result[0]
+                                    });
+                                }
                             });
+
+
+                            
                         } else {
                             return res.status(401).send({
                                 msg: 'Username or password is incorrect!'

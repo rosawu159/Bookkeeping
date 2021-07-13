@@ -41,4 +41,4 @@ const isLoggedIn = (req, res, next) => {
   }
 }
 
-export default validateRegister;
+export default isLoggedIn;

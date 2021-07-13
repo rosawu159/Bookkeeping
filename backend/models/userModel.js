@@ -14,8 +14,8 @@ export const getuser = (username, result) => {
 }
  
 // Insert User
-export const insertuser = (data, result) => {
-    db.query("INSERT INTO users SET username = ?, password = ?", [data.username, data.password], (err, results) => {             
+export const insertuser = (username, password, result) => {
+    db.query("INSERT INTO users SET username = ?, password = ?", [username, password], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);

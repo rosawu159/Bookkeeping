@@ -9,7 +9,7 @@ import { signupinvoice, logininvoice, loggedtime } from "../controllers/user.js"
 const router = express.Router();
  
 
-import  validateRegister from "../middleware/user.js"; 
+import  isLoggedIn from "../middleware/user.js"; 
 
 // Get All invoice
 router.get('/invoices', showinvoices);
@@ -27,13 +27,13 @@ router.put('/invoices/:id', updateinvoice);
 router.delete('/invoices/:id', deleteinvoice);
  
 // Signup
-router.post('/sign-up', validateRegister, signupinvoice);
+router.post('/sign-up', signupinvoice);
  
 // Login
-router.post('/login', validateRegister, logininvoice);
+router.post('/login', logininvoice);
 
 // Islogged
-router.get('/secret-route', validateRegister, loggedtime);
+router.get('/secret-route', isLoggedIn, loggedtime);
 
 // export default router
 export default router;
