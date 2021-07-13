@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 // Signup User
 export const signupinvoice = (req, res) => {
-    getuser(req.params.username, (err, results) => {
+    getuser(req.params.username, (err, result) => {
         if (result.length) {
             res.status(409).send({
                 msg: 'This username is already in use!'
@@ -17,7 +17,7 @@ export const signupinvoice = (req, res) => {
                     res.send(err);
                 } else {
                     const data = req.body;
-                    insertuser(data, (err, results) => {
+                    insertuser(data, (err, result) => {
                         if (err){
                             res.send(err);
                         }else{
@@ -35,7 +35,7 @@ export const signupinvoice = (req, res) => {
 // Create New User
 export const logininvoice = (req, res) => {
     const data = req.body;
-    insertuser(data, (err, results) => {
+    insertuser(data, (err, result) => {
         // user does not exists
         if (err){
             res.status(409).send({
